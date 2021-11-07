@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Amazon 2.0</title>
+    <!-- CSS -->
+    <link rel="stylesheet" href="style.css" />
+    <!-- Tailwind Css -->
+    <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet" />
+    <!-- jdenticon -->
+    <script src="https://cdn.jsdelivr.net/npm/jdenticon@3.1.0/dist/jdenticon.min.js" async
+        integrity="sha384-VngWWnG9GS4jDgsGEUNaoRQtfBGiIKZTiXwm9KpgAeaRn6Y/1tAFiyXqSzqC8Ga/"
+        crossorigin="anonymous"></script>
+    <!-- Font Awesome cdn -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+
+    <!-- FIREBASE -->
+
+    <script src="https://www.gstatic.com/firebasejs/8.8.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.8.1/firebase-analytics.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.8.1/firebase-firestore.js"></script>
+    <script src="./firebase.js"></script>
+    <script src="./script.js"></script>
+    <script src="./header.js"></script>
+
+</head>
+
+<body>
+    <div class="bg-white w-full">
+        <div class="header h-16 bg-gray-900 flex items-center">
+            <!-- LOGO -->
+            <div class="logo w-1/5 h-16 ml-10 pt-2">
+                <img class="w-40 h-12" src="logo.png" />
+            </div>
+            <!-- INPUT -->
+            <input class="
+            h-9
+            w-30
+            bg-gray-800
+            border border-gray-500 border-opacity-75
+            rounded-l-xl
+            px-3
+            text-white
+            ml-6
+            focus:outline-none
+            placeholder-white
+          " type="text" id="search" placeholder="Search..." />
+            <!--  CATEGORY -->
+            <div class="
+            categories
+            h-9
+            w-30
+            bg-gray-800
+            border border-gray-500 border-opacity-75
+            px-3
+            text-white
+            flex
+            items-center
+          ">
+                Categories
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 ml-2" fill="none" viewBox="0 0 24 24"
+                    stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" s troke-width="2" d="M19 9l-7 7-7-7" />
+                </svg>
+            </div>
+            <!-- SEARCH  -->
+            <div class="
+            search-icon
+            bg-yellow-500
+            h-9
+            w-10
+            rounded-r-xl
+            flex
+            justify-center
+            items-center
+          ">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24"
+                    stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                </svg>
+            </div>
+            <!-- RIGHT ICONS -->
+            <div class="
+            icons
+            text-white
+            flex
+            items-center
+            ml-auto
+            mr-8
+            w-48
+            h-16
+            justify-around
+          ">
+                <svg class="h-4 w-4" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
+                    stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
+                </svg>
+                <!-- CART  -->
+                <a href="cart.html">
+                    <div class="
+                    cart-icon
+                    relative
+                    h-10
+                    w-10
+                    bg-yellow-500
+                    flex
+                    items-center
+                    justify-center
+                    rounded-xl
+                  ">
+                        <div class="cart-item-number absolute -top-1 -right-1 h-4 w-4 bg-white rounded-full flex justify-center
+                           items-center text-gray-800 text-xs">
+                        </div>
+                        <svg class=" h-4 w-4 text-gray-600" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6"
+                            fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
+                        </svg>
+                    </div>
+                </a>
+
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24"
+                    stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" />
+                </svg>
+                <svg class="h-12 w-12 rounded-" data-jdenticon-value="Khushi"></svg>
+            </div>
+        </div>
+        <!-- MAIN -->
+        <div class="main h-screen flex">
+            <!-- SIDEBAR -->
+            <div class="
+            main-sidebar
+            w-1/5
+            bg-gray-900
+            p-6
+            border border-gray-700 border-t-2
+          ">
+                <!-- SIDEBAR CATEGORIES -->
+                <div class="sidebar-categories">
+                    <div class="sidebar-main-category text-yellow-500 
+                    cursor-pointer flex font-bold p-2 bg-gray-700 rounded-lg">
+                        <span class="w-8 ">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
+                                stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z" />
+                            </svg></span>
+                        <span>Categories</span>
+                    </div>
+                    <div class="sidebar-main-category text-white 
+                    cursor-pointer flex font-bold  p-2  ">
+                        <span class="w-8 "></span>
+                        <span>Echo and Alexa</span>
+                    </div>
+                    <div class="sidebar-main-category text-white 
+                    cursor-pointer flex font-bold   p-2">
+                        <span class="w-8"></span>
+                        <span>Kindle</span>
+                    </div>
+                    <div class="sidebar-main-category text-white 
+                    cursor-pointer flex font-bold  p-2">
+                        <span class="w-8"></span>
+                        <span>Books</span>
+                    </div>
+                    <div class="sidebar-main-category text-white 
+                    cursor-pointer flex font-bold  p-2">
+                        <span class="w-8"></span>
+                        <span>Electronics</span>
+                    </div>
+                    <div class="sidebar-main-category text-white 
+                    cursor-pointer flex font-bold p-2">
+                        <span class="w-8"></span>
+                        <span>Home and Garden</span>
+                    </div>
+                    <div class="sidebar-main-category text-white 
+                    cursor-pointer flex font-bold p-2">
+                        <span class="w-8"></span>
+                        <span>Fashion</span>
+                    </div>
+                    <div class="sidebar-main-category text-white 
+                    cursor-pointer flex font-bold  p-2 hover:bg-gray-700 
+                    rounded-xl mb-4 ">
+                        <span class="w-8"><i class="fas fa-percentage"></i></span>
+                        <span>Sell on Amazon</span>
+                    </div>
+                    <div class="sidebar-main-category text-white 
+                    cursor-pointer flex font-bold  p-2 hover:bg-gray-700 rounded-xl">
+                        <span class="w-8"><i class="far fa-question-circle"></i></span>
+                        <span>Help</span>
+                    </div>
+                </div>
+            </div>
+            <!-- MAIN SECTION -->
+            <div class="main-section flex-1 p-6 bg-gray-100 ">
+                <!-- BANNER -->
+                <div class="main-section-banner  h-44 rounded-lg flex items-end">
+                    <div class="button bg-white  w-36 h-10 rounded-full
+                     flex justify-center  items-center m-4 cursor-pointer">
+                        <h4 class="text-bold text-yellow-500"> Browse Products</h4>
+                    </div>
+                </div>
+                <!-- MAIN SECTION CATEGORIES -->
+                <div class="main-section-categories mt-10">
+                    <h1 class="popular-categories flex items-center 
+                    font-bold text-gray-700 text-2xl">Popular Categories
+                        <span class="star ">
+                            <svg class="h-6 w-6 text-yellow-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"
+                                fill="currentColor">
+                                <path
+                                    d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                            </svg>
+                        </span>
+                    </h1>
+                    <div class="categories mt-5 flex flex-wrap ">
+                        <div class="icon-dekstop h-20 w-20 bg-white
+                         rounded-xl flex justify-center items-center  ml-6">
+                            <svg class="h-12 w-12 text-gray-500 " xmlns="http://www.w3.org/2000/svg" fill="none"
+                                viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                            </svg>
+                        </div>
+                        <div class="icon-gift h-20 w-20 bg-white
+                         rounded-xl flex justify-center items-center ml-6">
+                            <svg class="h-12 w-12 text-gray-500 " xmlns="http://www.w3.org/2000/svg" fill="none"
+                                viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M12 8v13m0-13V6a2 2 0 112 2h-2zm0 0V5.5A2.5 2.5 0 109.5 8H12zm-7 4h14M5 12a2 2 0 110-4h14a2 2 0 110 4M5 12v7a2 2 0 002 2h10a2 2 0 002-2v-7" />
+                            </svg>
+
+                        </div>
+                        <div class="icon-phone h-20 w-20 bg-white
+                         rounded-xl flex justify-center items-center ml-6">
+                            <svg class="h-12 w-12 text-gray-500 " xmlns="http://www.w3.org/2000/svg" fill="none"
+                                viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z" />
+                            </svg>
+                        </div>
+                        <div class="icon-book h-20 w-20 bg-white
+                         rounded-xl flex justify-center items-center ml-6">
+                            <svg class="h-12 w-12 text-gray-500 " xmlns="http://www.w3.org/2000/svg" fill="none"
+                                viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+                            </svg>
+                        </div>
+                        <div class="icon-camera h-20 w-20 bg-white
+                         rounded-xl flex justify-center items-center ml-6">
+                            <svg class="h-12 w-12 text-gray-500 " xmlns="http://www.w3.org/2000/svg" fill="none"
+                                viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z" />
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M15 13a3 3 0 11-6 0 3 3 0 016 0z" />
+                            </svg>
+                        </div>
+                        <div class="icon-home h-20 w-20 bg-white
+                         rounded-xl flex justify-center items-center ml-6">
+                            <svg class="h-12 w-12 text-gray-500 " xmlns="http://www.w3.org/2000/svg" fill="none"
+                                viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
+                            </svg>
+                        </div>
+                        <div class="icon-music h-20 w-20 bg-white
+                         rounded-xl flex justify-center items-center ml-6">
+                            <svg class="h-12 w-12 text-gray-500 " xmlns="http://www.w3.org/2000/svg" fill="none"
+                                viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M9 19V6l12-3v13M9 19c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zm12-3c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zM9 10l12-3" />
+                            </svg>
+                        </div>
+                        <div class="icon-light h-20 w-20 bg-white
+                         rounded-xl flex justify-center items-center ml-6">
+                            <svg class="h-12 w-12 text-gray-500 " xmlns="http://www.w3.org/2000/svg" fill="none"
+                                viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+                <!-- MAIN SECTION DEALS-->
+                <div class="main-section-deals mt-5">
+                    <h1 class=" flex items-center 
+                    font-bold text-gray-700 text-2xl">Hot Deals 🔥</h1>
+                    <div class="main-section-products flex mt-5">
+                        <!-- <div class="main-product ml-6 ">
+                            <div class="product-image w-48 h-52 bg-white
+                            rounded-lg p-4">
+                                <img class="w-full h-full object-contain"
+                                    src="https://images.samsung.com/is/image/samsung/in-galaxy-z-fold2-f916-sm-f916bznainu-frontmysticbronze-thumb-296456509?$PD_GALLERY_L_SHOP_PNG$"
+                                    alt="">
+                            </div>
+                            <div class="product-name text-gray-700 font-bold mt-2 text-sm">
+                                Samsung Galaxy Z fold 2
+                            </div>
+                            <div class="product-make text-green-700 font-bold">
+                                Samsung
+                            </div>
+                            <div class="product-rating text-yellow-300 font-bold my-1">
+                                ⭐⭐⭐⭐⭐ 4.5
+                            </div>
+                            <div class="product-price font-bold text-gray-700 text-lg">
+                                $1,099.00
+                            </div>
+                            <div class="add-to-cart h-8 w-22 flex items-center mt-4
+                            justify-center bg-yellow-500 rounded text-white cursor-pointer hover:bg-yellow-600">
+                                Add to cart
+                            </div>
+                        </div>
+                        <div class="main-product ml-6  ">
+                            <div class="product-image w-48 h-52 bg-white
+                            rounded-lg p-4">
+                                <img class="w-full h-full object-contain"
+                                    src="https://www.trustedreviews.com/wp-content/uploads/sites/54/2020/07/Audio-Technica-M50xBT-920x629.jpg"
+                                    alt="">
+                            </div>
+                            <div class="product-name text-gray-700 font-bold mt-2 text-sm">
+                                Audio-Technica ATH-M50X
+                            </div>
+                            <div class="product-make text-green-700 font-bold">
+                                Audio-Technica
+                            </div>
+                            <div class="product-rating text-yellow-300 font-bold my-1">
+                                ⭐⭐⭐⭐⭐ 4.5
+                            </div>
+                            <div class="product-price font-bold text-gray-700 text-lg">
+                                $201.00
+                            </div>
+                            <div class="add-to-cart h-8 w-22 flex items-center mt-4
+                            justify-center bg-yellow-500 rounded text-white cursor-pointer hover:bg-yellow-600">
+                                Add to cart
+                            </div>
+                        </div>
+                        <div class="main-product ml-6  ">
+                            <div class="product-image w-48 h-52 bg-white
+                            rounded-lg p-4">
+                                <img class="w-full h-full object-contain"
+                                    src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRpuwjPf_8aD2QJfUR3ePHxvv7WMS6ALf_eUQ&usqp=CAU"
+                                    alt="">
+                            </div>
+                            <div class="product-name text-gray-700 font-bold mt-2 text-sm">
+                                Samsung CF396 Monitor
+                            </div>
+                            <div class="product-make text-green-700 font-bold">
+                                Samsung
+                            </div>
+                            <div class="product-rating text-yellow-300 font-bold my-1">
+                                ⭐⭐⭐⭐⭐ 4.5
+                            </div>
+                            <div class="product-price font-bold text-gray-700 text-lg">
+                                $159.99
+                            </div>
+                            <div class="add-to-cart h-8 w-22 flex items-center mt-4
+                            justify-center bg-yellow-500 rounded text-white cursor-pointer hover:bg-yellow-600">
+                                Add to cart
+                            </div>
+                        </div>
+                        <div class="main-product ml-6  ">
+                            <div class="product-image w-48 h-52 bg-white
+                            rounded-lg p-4">
+                                <img class="w-full h-full object-contain"
+                                    src="data:image/jpeg;base64,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""
+                                    alt="">
+                            </div>
+                            <div class=" product-name text-gray-700 font-bold mt-2 text-sm">
+                                Sony Alpha a600
+                            </div>
+                            <div class="product-make text-green-700 font-bold">
+                                Sony
+                            </div>
+                            <div class="product-rating text-yellow-300 font-bold my-1">
+                                ⭐⭐⭐⭐⭐ 4.5
+                            </div>
+                            <div class="product-price font-bold text-gray-700 text-lg">
+                                $537.00
+                            </div>
+                            <div class="add-to-cart h-8 w-22 flex items-center mt-4
+                            justify-center bg-yellow-500 rounded text-white cursor-pointer hover:bg-yellow-600">
+                                Add to cart
+                            </div>
+                        </div> -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
